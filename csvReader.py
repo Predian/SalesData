@@ -20,6 +20,14 @@ def parse_sales_data(file_path):
     
     return sales_data
 
+# Function to find the largest amount in the list of SalesRecord objects
+def find_largest_amount(sales_data):
+    if not sales_data:
+        return None  # Return None for an empty list
+    
+    max_amount_record = max(sales_data, key=lambda record: record.Amount)
+    return max_amount_record
+
 # Main part of the code
 if __name__ == '__main__':
     file_path = 'Data/SalesData.csv'
@@ -27,3 +35,9 @@ if __name__ == '__main__':
     
     for record in sales_data:
         print(record)
+        
+    largest_amount_record = find_largest_amount(sales_data)
+    if largest_amount_record:
+        print(f"Largest Amount: £{largest_amount_record.Amount} in {largest_amount_record.Year}, {largest_amount_record.Month}")
+    else:
+        print("No sales data found.")
