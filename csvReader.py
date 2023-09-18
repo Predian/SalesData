@@ -36,6 +36,15 @@ def find_smallest_amount(sales_data):
     min_amount_record = min(sales_data, key=lambda record: record.Amount)
     return min_amount_record
 
+# Function to calculate the average amount in the list of SalesRecord objects
+def calculate_average_amount(sales_data):
+    if not sales_data:
+        return None  # Return None for an empty list
+    
+    total_amount = sum(record.Amount for record in sales_data)
+    average_amount = total_amount / len(sales_data)
+    return average_amount
+
 # Main part of the code
 if __name__ == '__main__':
     file_path = 'Data/SalesData.csv'
@@ -53,5 +62,11 @@ if __name__ == '__main__':
     smallest_amount_record = find_smallest_amount(sales_data)
     if smallest_amount_record:
         print(f"Smallest Amount: £{smallest_amount_record.Amount} in {smallest_amount_record.Year}, {smallest_amount_record.Month}")
+    else:
+        print("No sales data found.")
+        
+    average_amount = calculate_average_amount(sales_data)
+    if average_amount is not None:
+        print(f"Average Amount: £{average_amount:.2f}")
     else:
         print("No sales data found.")
