@@ -28,6 +28,14 @@ def find_largest_amount(sales_data):
     max_amount_record = max(sales_data, key=lambda record: record.Amount)
     return max_amount_record
 
+# Function to find the smallest amount in the list of SalesRecord objects
+def find_smallest_amount(sales_data):
+    if not sales_data:
+        return None  # Return None for an empty list
+    
+    min_amount_record = min(sales_data, key=lambda record: record.Amount)
+    return min_amount_record
+
 # Main part of the code
 if __name__ == '__main__':
     file_path = 'Data/SalesData.csv'
@@ -39,5 +47,11 @@ if __name__ == '__main__':
     largest_amount_record = find_largest_amount(sales_data)
     if largest_amount_record:
         print(f"Largest Amount: £{largest_amount_record.Amount} in {largest_amount_record.Year}, {largest_amount_record.Month}")
+    else:
+        print("No sales data found.")
+        
+    smallest_amount_record = find_smallest_amount(sales_data)
+    if smallest_amount_record:
+        print(f"Smallest Amount: £{smallest_amount_record.Amount} in {smallest_amount_record.Year}, {smallest_amount_record.Month}")
     else:
         print("No sales data found.")
