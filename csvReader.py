@@ -45,6 +45,15 @@ def calculate_average_amount(sales_data):
     average_amount = total_amount / len(sales_data)
     return average_amount
 
+# Function to write a list of SalesRecord objects to a CSV file
+def write_sales_data_to_csv(file_path, sales_data):
+    with open(file_path, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Year', 'Month', 'Amount'])  # Write header
+        
+        for record in sales_data:
+            writer.writerow([record.Year, record.Month, record.Amount])
+
 # Main part of the code
 if __name__ == '__main__':
     file_path = 'Data/SalesData.csv'
@@ -70,3 +79,8 @@ if __name__ == '__main__':
         print(f"Average Amount: £{average_amount:.2f}")
     else:
         print("No sales data found.")
+        
+    # Write the sales data back to a CSV file
+    output_file_path = 'Data/SalesDataOutput.csv'
+    write_sales_data_to_csv(output_file_path, sales_data)
+    print(f"Sales data written to {output_file_path}")
